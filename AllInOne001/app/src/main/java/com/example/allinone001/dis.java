@@ -22,7 +22,7 @@ public class dis extends AppCompatActivity {
         String DOB=intt.getStringExtra("DOB");
         String DOJ=intt.getStringExtra("DOJ");
         String Destination=intt.getStringExtra("Destination");
-        Integer DOB1=Integer.parseInt(DOB);
+        Integer DOB1=Integer.parseInt(DOB,0);
         Integer age=curr-DOB1;
 
         res.setText("Name "+name+"\nNumber "+number+"\nDOB "+DOB+"\nDOJ "+DOJ+"\nDestination "+Destination+"\nAge "+age);

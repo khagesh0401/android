@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String DOB,DOJ;
     AutoCompleteTextView destination;
     Button book;
-    String places[]={"Banaglore","Hyderabad","Mumbai","Delhi","Pune"};
+    String[] places={"Banaglore","Hyderabad","Mumbai","Delhi","Pune"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +31,20 @@ public class MainActivity extends AppCompatActivity {
         destination=findViewById(R.id.destination);
         book=findViewById(R.id.button);
 
-        ArrayAdapter adapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,places);
+        ArrayAdapter adapter= new ArrayAdapter<>(this, android.R.layout.select_dialog_item,places);
         destination.setThreshold(1);
         destination.setAdapter(adapter);
 
 book.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-       Book(v);
+        Intent in=new Intent(getApplicationContext(), dis.class);
+        in.putExtra("Name",name.getText().toString());
+        in.putExtra("Number",number.getText().toString());
+        in.putExtra("DOB:",DOB);
+        in.putExtra("DOJ:",DOJ);
+        in.putExtra("Destination:",destination.getText().toString());
+        startActivity(in);
     }
 });
     }
@@ -69,14 +75,6 @@ book.setOnClickListener(new View.OnClickListener() {
         },pyear,pmonth,pday);
         dialog.show();
     }
-    public void Book(View v){
-        Intent in=new Intent(getApplicationContext(), dis.class);
-        in.putExtra("Name",name.getText().toString());
-        in.putExtra("Number",number.getText().toString());
-        in.putExtra("DOB:",DOB);
-        in.putExtra("DOJ:",DOJ);
-        in.putExtra("Destination:",destination.getText().toString());
-        startActivity(in);
-    }
+
 
 }
